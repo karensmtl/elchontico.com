@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chontico millonario - Resultados</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="./index.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <h1 class="brand">Chontico</h1>
+            <nav class="nav">
+                <a href="#" class="nav__link">Inicio</a>
+                <a href="#" class="nav__link">Resultados</a>
+                <a href="#" class="nav__link">En vivo</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container layout">
+            <section class="content">
+                <div class="card">
+                    <div class="card__header">
+                        <h2 class="card__title">Transmisión / Video</h2>
+                        <p class="card__subtitle">Reproduce el video y consulta los resultados al lado.</p>
+                    </div>
+
+                    <div class="player">
+                        <video
+                            id="chontico-player"
+                            class="player__video"
+                            controls
+                            autoplay
+                            muted
+                            playsinline
+                        ></video>
+                    </div>
+
+                </div>
+            </section>
+
+            <aside class="sidebar">
+                <div class="card">
+                    <div class="card__header">
+                        <h2 class="card__title">Resultados Chontico</h2>
+                        <p class="card__subtitle">Últimos sorteos</p>
+                    </div>
+
+                    <ul class="results">
+                        <li class="results__item">
+                            <div class="results__meta">
+                                <span class="results__date">09 Ene 2026</span>
+                                <span class="results__draw">Noche</span>
+                            </div>
+                            <div class="results__number">1234</div>
+                        </li>
+
+                        <li class="results__item">
+                            <div class="results__meta">
+                                <span class="results__date">09 Ene 2026</span>
+                                <span class="results__draw">Día</span>
+                            </div>
+                            <div class="results__number">8075</div>
+                        </li>
+
+                        <li class="results__item">
+                            <div class="results__meta">
+                                <span class="results__date">08 Ene 2026</span>
+                                <span class="results__draw">Noche</span>
+                            </div>
+                            <div class="results__number">4461</div>
+                        </li>
+
+                        <li class="results__item">
+                            <div class="results__meta">
+                                <span class="results__date">08 Ene 2026</span>
+                                <span class="results__draw">Día</span>
+                            </div>
+                            <div class="results__number">0912</div>
+                        </li>
+                    </ul>
+
+                    <div class="sidebar__note">
+                        <small>* Reemplaza estos datos por tu API / backend.</small>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>© 2026 Chontico</span>
+            <span class="footer__muted">Resultados y transmisión en un solo lugar</span>
+        </div>
+    </footer>
+</body>
+</html>

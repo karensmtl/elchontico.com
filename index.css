@@ -331,7 +331,7 @@ background-clip: text;
 }
 
 .ad-img {
-    width: %;      /* Obliga a la imagen a ocupar todo el ancho */
+    width: 100%;      /* Obliga a la imagen a ocupar todo el ancho */
     height: auto;    /* Obliga a la imagen a ocupar todo el alto */
     object-fit: cover; /* Hace que la imagen se vea bien sin estirarse feo */
     display: block;
@@ -576,4 +576,39 @@ background-clip: text;
 
 .actualidad__link:hover {
     color: var(--accent); /* Cambia a turquesa al pasar el mouse */
+}
+/* --- MODO CELULAR Y TABLET --- */
+
+@media (max-width: 900px) {
+    /* El video y los resultados ahora se ponen uno debajo del otro */
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* Las noticias ya no son 4, ahora son 2 columnas en tablets */
+    .actualidad__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    /* En celulares pequeños, las noticias ocupan todo el ancho (1 columna) */
+    .actualidad__grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Ajustamos el tamaño de la imagen de la noticia para que no sea gigante */
+    .news-thumb-v2 {
+        height: 200px;
+    }
+
+    /* Bajamos el tamaño del título para que quepa bien */
+    .brand {
+        font-size: 18px;
+    }
+    
+    .actualidad__title {
+        font-size: 20px;
+    }
 }

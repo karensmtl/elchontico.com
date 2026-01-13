@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Chontico millonario - Resultados</title>
+    <title>Chontico - Resultados</title>
     <link rel="stylesheet" href="./index.css" />
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="./index.js" defer></script>
@@ -11,92 +11,97 @@
 <body>
     <header class="header">
         <div class="container header__inner">
-            <h1 class="brand">Chontico</h1>
+            <h1 class="brand">Chontico Millonario</h1>
             <nav class="nav">
-                <a href="#" class="nav__link">Inicio</a>
-                <a href="#" class="nav__link">Resultados</a>
-                <a href="#" class="nav__link">En vivo</a>
+                <a href="index.html" class="nav__link active">Inicio</a>
+                <a href="resultados.html" class="nav__link">Resultados</a>
+                <a href="envivo.html" class="nav__link">En vivo</a>
             </nav>
+            <div class="header__search">
+                <input type="text" placeholder="Buscar sorteo...">
+            </div>
         </div>
     </header>
 
-    <main class="main">
-        <div class="container layout">
+    <div class="trends container">
+        <span class="trend__item">Resultados Ayer</span>
+        <span class="trend__item">Chontico Noche</span>
+        <span class="trend__item">Gane Supergiros</span>
+    </div>
+
+    <main class="main container">
+        <div class="layout">
             <section class="content">
-                <div class="card">
+                <div class="card player-card">
                     <div class="card__header">
-                        <h2 class="card__title">Transmisión / Video</h2>
-                        <p class="card__subtitle">Reproduce el video y consulta los resultados al lado.</p>
+                        <span class="live-badge">EN VIVO</span>
+                        <h2 class="card__title">Señal en vivo</h2>
                     </div>
-
                     <div class="player">
-                        <video
-                            id="chontico-player"
-                            class="player__video"
-                            controls
-                            autoplay
-                            muted
-                            playsinline
-                        ></video>
+                        <video id="chontico-player" class="player__video" controls autoplay muted></video>
                     </div>
-
                 </div>
             </section>
 
             <aside class="sidebar">
                 <div class="card">
-                    <div class="card__header">
-                        <h2 class="card__title">Resultados Chontico</h2>
-                        <p class="card__subtitle">Últimos sorteos</p>
-                    </div>
-
-                    <ul class="results">
-                        <li class="results__item">
-                            <div class="results__meta">
-                                <span class="results__date">09 Ene 2026</span>
-                                <span class="results__draw">Noche</span>
-                            </div>
-                            <div class="results__number">1234</div>
-                        </li>
-
-                        <li class="results__item">
-                            <div class="results__meta">
-                                <span class="results__date">09 Ene 2026</span>
-                                <span class="results__draw">Día</span>
-                            </div>
-                            <div class="results__number">8075</div>
-                        </li>
-
-                        <li class="results__item">
-                            <div class="results__meta">
-                                <span class="results__date">08 Ene 2026</span>
-                                <span class="results__draw">Noche</span>
-                            </div>
-                            <div class="results__number">4461</div>
-                        </li>
-
-                        <li class="results__item">
-                            <div class="results__meta">
-                                <span class="results__date">08 Ene 2026</span>
-                                <span class="results__draw">Día</span>
-                            </div>
-                            <div class="results__number">0912</div>
-                        </li>
-                    </ul>
-
-                    <div class="sidebar__note">
-                        <small>* Reemplaza estos datos por tu API / backend.</small>
-                    </div>
+                    <div class="card__header"><h2 class="card__title">Resultados Recientes</h2></div>
+                    <ul class="results" id="lista-resultados"></ul>
                 </div>
             </aside>
         </div>
-    </main>
 
-    <footer class="footer">
-        <div class="container footer__inner">
-            <span>© 2026 Chontico</span>
-            <span class="footer__muted">Resultados y transmisión en un solo lugar</span>
-        </div>
-    </footer>
+        <section class="actualidad">
+            <div class="actualidad__header">
+                <h2 class="actualidad__title">Actualidad</h2>
+                <a href="#" class="actualidad__link">Ver todo el contenido ></a>
+            </div>
+
+            <div class="actualidad__grid">
+                <article class="news-card-v2">
+                    <div class="news-thumb-v2">
+                        <img src="img/hombre.jpg" alt="Noticia Chontico">
+                        <span class="category-tag">Actualidad</span>
+                    </div>
+                    <div class="news-content-v2">
+                        <h4>¿Cómo reclamar tu premio del Chontico?</h4>
+                        <p>¡Lo puedes jugar de lunes a domingo! Este sorteo es regional del Valle del Cauca.</p>
+                        <a href="#" class="read-more">Leer más ></a>
+                    </div>
+                </article>
+
+                <article class="news-card-v2">
+                    <div class="news-thumb-v2">
+                        <img src="img/hombre.jpg" alt="Sorteo">
+                        <span class="category-tag">Sorteos</span>
+                    </div>
+                    <div class="news-content-v2">
+                        <h4>Resultados del Chontico Noche</h4>
+                        <p>Revisa los números ganadores del último sorteo aquí mismo.</p>
+                        <a href="#" class="read-more">Leer más ></a>
+                    </div>
+                </article>
+
+                <article class="news-card-v2">
+                    <div class="news-thumb-v2">
+                        <img src="img/hombre.jpg" alt="Info">
+                        <span class="category-tag">Gane</span>
+                    </div>
+                    <div class="news-content-v2">
+                        <h4>Puntos de pago en el Valle</h4>
+                        <p>Conoce la red Gane donde puedes apostar y cobrar tus premios.</p>
+                        <a href="#" class="read-more">Leer más ></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <aside class="ad-section">
+            <span class="ad-label">PUBLICIDAD</span>
+            <div class="ad-box-final">
+                <img src="./img/genio.jpg" alt="Publicidad" class="ad-img-final">
+            </div>
+        </aside>
+    </main>
 </body>
 </html>

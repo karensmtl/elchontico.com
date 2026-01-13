@@ -544,7 +544,6 @@ body.modo-claro .news-content-v2 h4 {
     font-size: 13px;
     color: #a0a0a0;
     display: -webkit-box;
-    -webkit-line-clamp: 3; 
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

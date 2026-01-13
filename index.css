@@ -83,7 +83,7 @@ background-clip: text;
 .card{
     background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 10px;
     box-shadow: var(--shadow);
     overflow: hidden;
 }
@@ -611,4 +611,41 @@ background-clip: text;
     .actualidad__title {
         font-size: 20px;
     }
+}
+.results__item {
+    padding: 13px; /* Reduce el espacio interno de cada resultado */
+}
+
+.results__number {
+    font-size: 26px; /* Hace los números un poco más pequeños para que quepan bien */
+}
+/* Este contenedor debe envolver a las NOTICIAS y a la PUBLICIDAD */
+.bottom-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+
+/* Ajuste específico para el cuadro de publicidad */
+.ad-section {
+    width: 320px;       /* Ajusta este ancho para que coincida con el de Resultados Recientes */
+    min-width: 320px;   /* Evita que se encoja */
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-box-final {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #000;
+}
+
+.ad-img-final {
+    width: 100%;        /* Obliga a la imagen a llenar el cuadro */
+    height: auto;
+    display: block;
+    object-fit: contain; /* Mantiene la proporción del Genio de Gane */
 }

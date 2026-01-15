@@ -622,7 +622,7 @@ body.modo-claro .news-content-v2 h4 {
     margin: 0;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 760px) {
     .actualidad__grid {
         grid-template-columns: repeat(2, 1fr); 
     }

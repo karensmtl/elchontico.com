@@ -16,6 +16,7 @@ const sorteosChontico = [
     { fecha: "11 Ene 2026", sorteo: "Día",   numero: "9225" }
 ];
 
+
 function cargarResultados() {
     const contenedor = document.getElementById("lista-resultados");
     if(!contenedor) return; // Seguridad por si no encuentra el ID

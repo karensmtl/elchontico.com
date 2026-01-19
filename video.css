@@ -40,18 +40,19 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 50;
     background: #62ff00;
-    color: #ffffff;
-    padding: 12px 24px;
-    border-radius: 30px;
+    color: #000000;      /* Cambio a negro para mejor lectura sobre verde */
+    padding: 6px 12px;   /* Reducido para que sea más pequeño */
+    border-radius: 8px;  /* Bordes más finos */
     font-weight: bold;
+    font-size: 0.75rem;  /* Letra más pequeña */
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(65, 105, 225, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     border: none;
     animation: pulse 2s infinite;
+    text-transform: uppercase;
 }
-
 @keyframes pulse {
     0% { transform: translate(-50%, -50%) scale(1); }
     50% { transform: translate(-50%, -50%) scale(1.05); }

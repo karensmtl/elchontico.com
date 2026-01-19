@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chontico - Sorteo en Vivo</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./video.css" />
+</head>
+<body>
+
+<header class="header">
+    <div class="container header__inner">
+        <img src="img/logo.png" alt="Chontico" class="brand-logo">
+        <nav class="nav">
+            <a href="index.html" class="nav__link">Inicio</a>
+            <a href="index.html" class="nav__link active">En vivo</a>
+            <a href="resultadoschontico.html" class="nav__link">Resultados</a>
+        </nav>
+        <div class="header__actions">
+            <div class="header__search">
+                <input type="text" placeholder="Buscar sorteo...">
+            </div>
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div class="live-banner">
+        SORTEO LUNES 19 DE ENERO
+    </div>
+
+    <div class="layout-full">
+        <section class="content-full">
+            <div class="card player-card">
+                <div class="card__header">
+                    <span class="live-badge">🔴 EN VIVO</span>
+                    <h2 class="card__title">Señal en vivo</h2>
+                </div>
+                
+                <div class="player-container">
+                    <div id="mute-overlay" class="sound-overlay" onclick="enableSound()">
+                        <span>🔊 ACTIVAR SONIDO</span>
+                    </div>
+                    
+                    <video id="main-player" class="player__video" autoplay muted playsinline>
+                        <source src="img/19.mp4" type="video/mp4">
+                    </video>
+
+                    <!-- Controles personalizados -->
+                    <div class="custom-controls">
+                        <div class="controls-row">
+                            <!-- Barra de progreso -->
+                            <input type="range" class="progress-bar" id="progressBar" value="0" min="0" max="100">
+                            
+                            <div class="time-display">
+                                <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                            </div>
+                        </div>
+
+                        <div class="controls-row controls-buttons">
+                            <!-- Play/Pause -->
+                            <button class="control-btn" id="playPauseBtn" onclick="togglePlayPause()">
+                                ⏸️
+                            </button>
+
+                            <!-- Retroceder 10s -->
+                            <button class="control-btn" onclick="skipTime(-10)" title="Retroceder 10s">
+                                ⏪
+                            </button>
+
+                            <!-- Adelantar 10s -->
+                            <button class="control-btn" onclick="skipTime(10)" title="Adelantar 10s">
+                                ⏩
+                            </button>
+
+                            <div class="spacer"></div>
+
+                            <!-- Volumen -->
+                            <div class="volume-control">
+                                <button class="control-btn" id="volumeBtn" onclick="toggleMute()">
+                                    🔊
+                                </button>
+                                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="100">
+                            </div>
+
+                            <!-- Pantalla completa -->
+                            <button class="control-btn" onclick="toggleFullscreen()" title="Pantalla completa">
+                                ⛶
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Sección Ver Más -->
+    <section class="more-content">
+        <h2 class="section-title">📺 Ver Más Contenido</h2>
+        
+        <div class="videos-grid">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="img/18 enero.png" alt="imagen">
+                    <span class="video-duration">24:15</span>
+                </div>
+                <div class="video-info">
+                    <h3>Sorteo del 18 de Enero</h3>
+                    <p>Revive el sorteo del día anterior</p>
+                    <span class="video-date">Hace 1 día</span>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="img/17 enero.png" alt="imagen">
+                    <span class="video-duration">5:30</span>
+                </div>
+                <div class="video-info">
+                    <h3>Resultados de la Semana</h3>
+                    <p>Todos los números ganadores</p>
+                    <span class="video-date">Hace 2 días</span>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="img/1 6enero.png" alt="imagen">
+                    <span class="video-duration">8:45</span>
+                </div>
+                <div class="video-info">
+                    <h3>Cómo Reclamar tu Premio</h3>
+                    <p>Guía completa paso a paso</p>
+                    <span class="video-date">Hace 3 días</span>
+                </div>
+            </div>
+
+    </section>
+
+    <section class="ad-container">
+        <span class="ad-label">PUBLICIDAD</span>
+        <div class="ad-box">
+            <img src="img/genio.jpg" alt="Publicidad">
+        </div>
+    </section>
+</main>
+
+<script>
+    const video = document.getElementById('main-player');
+    const overlay = document.getElementById('mute-overlay');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const progressBar = document.getElementById('progressBar');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeBtn = document.getElementById('volumeBtn');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationEl = document.getElementById('duration');
+
+    function enableSound() {
+        video.muted = false;
+        video.volume = 1.0;
+        overlay.style.display = 'none';
+        video.play();
+    }
+
+    function togglePlayPause() {
+        if (video.paused) {
+            video.play();
+            playPauseBtn.textContent = '⏸️';
+        } else {
+            video.pause();
+            playPauseBtn.textContent = '▶️';
+        }
+    }
+
+    function skipTime(seconds) {
+        video.currentTime += seconds;
+    }
+
+    function toggleMute() {
+        video.muted = !video.muted;
+        updateVolumeIcon();
+    }
+
+    function updateVolumeIcon() {
+        if (video.muted || video.volume === 0) {
+            volumeBtn.textContent = '🔇';
+        } else if (video.volume < 0.5) {
+            volumeBtn.textContent = '🔉';
+        } else {
+            volumeBtn.textContent = '🔊';
+        }
+    }
+
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            video.requestFullscreen().catch(err => console.log(err));
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    // Actualizar progreso
+    video.addEventListener('timeupdate', () => {
+        const progress = (video.currentTime / video.duration) * 100;
+        progressBar.value = progress;
+        currentTimeEl.textContent = formatTime(video.currentTime);
+    });
+
+    // Mostrar duración
+    video.addEventListener('loadedmetadata', () => {
+        durationEl.textContent = formatTime(video.duration);
+    });
+
+    // Cambiar progreso
+    progressBar.addEventListener('input', () => {
+        const time = (progressBar.value / 100) * video.duration;
+        video.currentTime = time;
+    });
+
+    // Control de volumen
+    volumeSlider.addEventListener('input', () => {
+        video.volume = volumeSlider.value / 100;
+        video.muted = false;
+        updateVolumeIcon();
+    });
+
+    // Intento de reproducción automática
+    window.addEventListener('load', () => {
+        video.play().catch(() => {
+            console.log("Esperando interacción para el audio");
+        });
+    });
+
+    // ============================================
+    // CAMBIO DE TEMA DÍA/NOCHE
+    // ============================================
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    body.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    // Cambiar tema al hacer clic
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+</script>
+
+</body>
+</html>

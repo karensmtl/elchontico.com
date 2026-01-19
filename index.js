@@ -10,10 +10,10 @@ if (Hls.isSupported()) {
 }
 
 const sorteosChontico = [
-    { fecha: "12 Ene 2026", sorteo: "Noche", numero: "4589" },
-    { fecha: "12 Ene 2026", sorteo: "Día",   numero: "2231" },
-    { fecha: "11 Ene 2026", sorteo: "Noche", numero: "5935" },
-    { fecha: "11 Ene 2026", sorteo: "Día",   numero: "9225" }
+    { fecha: "13 Ene 2026", sorteo: "Noche", numero: "4589 (5) 4" },
+    { fecha: "13 Ene 2026", sorteo: "Día",   numero: "2231 (5) 4" },
+    { fecha: "13 Ene 2026", sorteo: "Noche", numero: "5935 (5) 4" },
+    { fecha: "13 Ene 2026", sorteo: "Día",   numero: "9225 (5) 4" }
 ];
 
 
@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!listaResultados) return;
 
         const datosEjemplo = [
-            { fecha: 'Hoy 13 de enero', sorteo: 'Día', numero: '4829' },
-            { fecha: 'Hoy 13 de enero', sorteo: 'Noche', numero: '1054' }
+            { fecha: 'Hoy 13 de enero', sorteo: 'Día', numero: '4829 / 4' },
+            { fecha: 'Hoy 13 de enero', sorteo: 'Noche', numero: '1054 / 5' }
         ];
 
         listaResultados.innerHTML = datosEjemplo.map(item => `

@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chontico - Resultados</title>
     <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./audio-button.css" />
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="./index.js" defer></script>
-
 </head>
 <body>
 <header class="header">
@@ -15,124 +15,114 @@
         <img src="img/logo.png" alt="Elchontico.com" class="brand-logo">
         <nav class="nav">
             <a href="index.html" class="nav__link active">Inicio</a>
-            <a href="envivo.html" class="nav__link">En vivo </a>
-            <a href="subpages/boletindestacado.html" class="nav__link">Novedades </a>
+            <a href="resultadoschontico.html" class="nav__link">Resultados </a>
         </nav>
         <div class="header__actions">
-    <div class="header__search">
-        <input type="text" placeholder="Buscar sorteo...">
-    </div>
-    <button id="theme-toggle" class="theme-btn">
-        <span class="icon-sun">☀️</span>
-        <span class="icon-moon">🌙</span>
-    </button>
-</div>
+            <div class="header__search">
+                <input type="text" placeholder="Buscar sorteo...">
+            </div>
+            <button id="theme-toggle" class="theme-btn">
+                <span class="icon-sun">☀️</span>
+                <span class="icon-moon">🌙</span>
+            </button>
+        </div>
     </div>
 </header>
+
 <div class="trends container">
     <a href="resultadoschontico.html" class="trend__item">Resultados Chontico Millonario</a>
 </div>
 
-    <main class="main container">
-        <div class="layout">
-            <section class="content">
-                <div class="card player-card">
-                    <div class="card__header">
-                        <span class="live-badge">🔴 EN VIVO</span>
-                        <h2 class="card__title">Señal en vivo</h2>
-                    </div>
-                    <div class="player">
-                        <video id="chontico-player" class="player__video" controls autoplay muted></video>
+<main class="main container">
+    <div class="layout">
+        <section class="content">
+            <div class="card player-card">
+                <div class="card__header">
+                    <span class="live-badge">🔴 EN VIVO</span>
+                    <h2 class="card__title">Señal en vivo</h2>
+                </div>
+                <div class="player">
+                    <video id="chontico-player" class="player__video" controls autoplay muted></video>
+                    
+                    <!-- Botón de Activar Audio -->
+                    <div class="audio-btn-overlay" id="audioBtnOverlay">
+                        <button class="activate-audio-btn" id="activateAudioBtn">
+                            🔊 Activar Audio
+                        </button>
                     </div>
                 </div>
-            </section>
-
-            <aside class="sidebar">
-                <div class="card">
-                    <div class="card__header"><h2 class="card__title">Resultados Recientes</h2></div>
-                    <ul class="results" id="lista-resultados"></ul>
-                </div>
-            </aside>
-        </div>
-
-        <section class="actualidad">
-            <div class="actualidad__header">
-                <h2 class="actualidad__title">NOTICIAS</h2>
-                <a href="subpages/boletindestacado.html" class="actualidad__link">Ver todo el contenido ></a>
-            </div>
-            
-            <div class="actualidad__grid">
-                <!-- ========== TARJETA CON VIDEO ========== -->
-                <article class="news-card-v2 video-news-card">
-                    <div class="news-thumb-v2">
-                        <!-- Video -->
-                        <!-- ✏️ CAMBIAR: src con tu video -->
-                        <video id="newsVideo" muted loop playsinline>
-                            <source src="img/19.mp4" type="video/mp4">
-                            Tu navegador no soporta videos.
-                        </video>
-
-                        <!-- Play Button Overlay -->
-                        <div class="play-overlay-news" id="playOverlayNews" onclick="playNewsVideo()">
-                            <div class="play-button-news">▶</div>
-                        </div>
-
-                        <!-- Audio Warning -->
-                        <div class="audio-warning-news" id="audioWarningNews">
-                            🔊 Activar audio
-                        </div>
-
-                        <!-- Video Controls -->
-                        <div class="video-controls-news">
-                            <button class="control-btn-news" id="muteBtnNews" onclick="toggleMuteNews()" title="Activar/Desactivar audio">
-                                🔇
-                            </button>
-                            <button class="control-btn-news" onclick="toggleFullscreenNews()" title="Pantalla completa">
-                                ⛶
-                            </button>
-                        </div>
-                    </div>
-                    <div class="news-content-v2">
-                        <h4>Sorteo en Vivo del Chontico</h4>
-                        <p>Transmisión en directo del sorteo de hoy. Haz clic para reproducir con audio.</p>
-                        <a href="#" class="read-more" onclick="playNewsVideo(); return false;">Ver ahora ></a>
-                    </div>
-                </article>
-
-                <!-- ========== TARJETA NORMAL 1 ========== -->
-                <article class="news-card-v2">
-                    <div class="news-thumb-v2">
-                        <img src="img/hombre.jpg" alt="Noticia Chontico">
-                        <span class="category-tag">Sorteos</span>
-                    </div>
-                    <div class="news-content-v2">
-                        <h4>¿Cómo reclamar tu premio del Chontico?</h4>
-                        <p>¡Lo puedes jugar de lunes a domingo! Este sorteo es regional del Valle del Cauca.</p>
-                        <a href="subpages/new.html" class="read-more">Leer más ></a>
-                    </div>
-                </article>
-
-                <!-- ========== TARJETA NORMAL 2 ========== -->
-                <article class="news-card-v2">
-                    <div class="news-thumb-v2">
-                        <img src="img/actualidad.jpg" alt="Sorteo">
-                        <span class="category-tag">Actualidad</span>
-                    </div>
-                    <div class="news-content-v2">
-                        <h4>Noticias de última hora</h4>
-                        <p>Las actualidades mundiales</p>
-                        <a href="subpages/noticia2.html" class="read-more">Leer más ></a>
-                    </div>
-                </article>
             </div>
         </section>
 
-        <aside class="ad-section">
-            <span class="ad-label">PUBLICIDAD</span>
-            <div class="ad-box-final">
-                <img src="./img/genio.jpg" alt="Publicidad" class="ad-img-final">
+        <aside class="sidebar">
+            <div class="card">
+                <div class="card__header"><h2 class="card__title">Resultados Recientes</h2></div>
+                <ul class="results" id="lista-resultados"></ul>
             </div>
         </aside>
-    </main>
+    </div>
+
+    <section class="actualidad">
+        <div class="actualidad__header">
+            <h2 class="actualidad__title">NOTICIAS</h2>
+            <a href="subpages/boletindestacado.html" class="actualidad__link">Ver todo el contenido ></a>
+        </div>
+        
+        <div class="actualidad__grid">
+            <a href="video.html" target="_blank" class="news-card-v2 video-news-card" style="text-decoration: none; color: inherit;">
+                <div class="news-thumb-v2">
+                    <video id="newsVideo" muted loop playsinline autoplay>
+                        <source src="img/19.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="news-content-v2">
+                    <h4>Sorteo en Vivo del Chontico</h4>
+                    <p>Transmisión en directo del sorteo de hoy. Haz clic para ver en vivo.</p>
+                    <a href="video.html" class="read-more">Ver ahora ></a>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <aside class="ad-section">
+        <span class="ad-label">PUBLICIDAD</span>
+        <div class="ad-box-final">
+            <img src="./img/genio.jpg" alt="Publicidad" class="ad-img-final">
+        </div>
+    </aside>
+</main>
+
+<script>
+// Script para activar audio
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('chontico-player');
+    const audioBtn = document.getElementById('activateAudioBtn');
+    const audioOverlay = document.getElementById('audioBtnOverlay');
+    
+    // Intentar activar audio automáticamente
+    video.muted = false;
+    
+    video.play().catch(function() {
+        // Si falla, mostrar el botón
+        video.muted = true;
+        video.play();
+        audioOverlay.style.display = 'flex';
+    });
+    
+    // Al hacer clic en el botón
+    audioBtn.addEventListener('click', function() {
+        video.muted = false;
+        audioOverlay.style.display = 'none';
+    });
+    
+    // También activar con cualquier click si el botón no funcionó
+    document.body.addEventListener('click', function() {
+        if (video.muted) {
+            video.muted = false;
+            audioOverlay.style.display = 'none';
+        }
+    });
+});
+</script>
 </body>
 </html>

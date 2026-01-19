@@ -708,90 +708,35 @@ body.modo-claro .news-content-v2 h4 {
     display: block;
     object-fit: contain; 
 }
-/* --- 1. AJUSTE DEL LOGO (CORRECCIÓN DE MÁRGENES) --- */
 .brand-logo {
-    height: 120px; /* Tamaño un poco más moderado para evitar saltos */
-    width: auto;
+    height: 150px;            /* Subimos de 80px a 120px para que destaque */
+    width: auto;              /* Mantiene la proporción original */
     display: block;
     object-fit: contain;
-    position: relative;
+    
+    /* EL TRUCO MÁGICO */
+    margin-top: -60px;        /* Tira el logo hacia arriba del banner */
+    margin-bottom: -60px;     /* Tira el logo hacia abajo del banner */
+    position: relative;       /* Asegura que se vea por encima de otros elementos */
     z-index: 10;
-    /* Reducimos el margen negativo para que no desaparezca en móviles */
-    margin-top: -30px; 
-    margin-bottom: -30px;
-    transition: all 0.3s ease;
+}
+/* Navegación para que no se pegue al logo */
+.nav {
+    display: flex;
+    gap: 10px;
+    margin-right: 70px;        /* Empuja la búsqueda hacia la derecha */
+    margin-left: 80px;         /* Separa el menú del logo */
 }
 
-/* --- 2. EL HEADER (ASEGURAR VISIBILIDAD) --- */
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 100; /* Subimos el z-index para que nada lo tape */
-    background: rgba(11, 16, 32, 0.95); /* Menos transparencia para que se vea claro */
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--borde);
-    min-height: 70px; /* Altura mínima asegurada */
-}
-
-/* --- 3. RESPONSIVE TOTAL (EL BLOQUE CLAVE) --- */
+/* Responsivo para celulares */
 @media (max-width: 768px) {
-    /* Ajuste del contenedor del header */
+    .brand-logo {
+        height: 50px;          /* Más pequeño en celular para ahorrar espacio */
+    }
+    
     .header__inner {
-        flex-direction: column; /* Apilamos los elementos verticalmente */
-        padding: 15px 0;
-        gap: 12px;
-    }
-
-    /* Ajuste del Logo en móvil */
-    .brand-logo {
-        height: 60px;       /* Tamaño ideal para celular */
-        margin-top: 0;      /* ELIMINAMOS los márgenes negativos en móvil */
-        margin-bottom: 0;
-        margin-left: 0;
-    }
-
-    /* Ajuste del Menú de navegación */
-    .nav {
-        margin: 0 !important; /* Quitamos los márgenes laterales de PC */
-        width: 100%;
+        flex-wrap: wrap;       /* Permite que los elementos se acomoden si no caben */
         justify-content: center;
-        gap: 8px;
-    }
-
-    .nav__link {
-        font-size: 13px;
-        padding: 6px 8px;
-    }
-
-    /* Acciones (Búsqueda y Luna) */
-    .header__actions {
-        width: 100%;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .header__search {
-        flex: 0 1 200px; /* Que no ocupe todo el ancho si no es necesario */
-    }
-
-    .header__search input {
-        width: 100%;
-        font-size: 14px;
-    }
-
-    /* Evitar que el video de noticias se pierda */
-    .video-news-card .news-thumb-v2 {
-        height: 200px; /* Altura cómoda para ver el video en vertical */
-    }
-}
-
-/* Ajuste extra para pantallas muy pequeñas */
-@media (max-width: 480px) {
-    .brand-logo {
-        height: 50px;
-    }
-    .nav__link {
-        font-size: 12px;
     }
 }
 /* --- Estenedor Principal de la Tarjeta --- */
@@ -916,4 +861,70 @@ body.modo-claro .news-content-v2 h4 {
         grid-template-columns: 1fr; /* Una noticia debajo de otra en móvil */
         gap: 20px;
     }
+}
+/* Overlay del botón de audio */
+.audio-btn-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.audio-btn-overlay .activate-audio-btn {
+    pointer-events: all;
+}
+
+/* Botón de Activar Audio */
+.activate-audio-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+    animation: pulse-btn 2s infinite;
+}
+
+.activate-audio-btn:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+}
+
+@keyframes pulse-btn {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .activate-audio-btn {
+        padding: 12px 25px;
+        font-size: 0.95em;
+    }
+}
+/* Asegúrate de que esta regla esté en tu index.css */
+.player {
+    position: relative;
+}
+
+/* Si el botón sigue sin centrarse, agrega esto también */
+.player-card .player {
+    position: relative;
+    width: 100%;
 }

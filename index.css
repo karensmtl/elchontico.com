@@ -708,35 +708,90 @@ body.modo-claro .news-content-v2 h4 {
     display: block;
     object-fit: contain; 
 }
+/* --- 1. AJUSTE DEL LOGO (CORRECCIÓN DE MÁRGENES) --- */
 .brand-logo {
-    height: 150px;            /* Subimos de 80px a 120px para que destaque */
-    width: auto;              /* Mantiene la proporción original */
+    height: 120px; /* Tamaño un poco más moderado para evitar saltos */
+    width: auto;
     display: block;
     object-fit: contain;
-    
-    /* EL TRUCO MÁGICO */
-    margin-top: -60px;        /* Tira el logo hacia arriba del banner */
-    margin-bottom: -60px;     /* Tira el logo hacia abajo del banner */
-    position: relative;       /* Asegura que se vea por encima de otros elementos */
+    position: relative;
     z-index: 10;
-}
-/* Navegación para que no se pegue al logo */
-.nav {
-    display: flex;
-    gap: 10px;
-    margin-right: 70px;        /* Empuja la búsqueda hacia la derecha */
-    margin-left: 80px;         /* Separa el menú del logo */
+    /* Reducimos el margen negativo para que no desaparezca en móviles */
+    margin-top: -30px; 
+    margin-bottom: -30px;
+    transition: all 0.3s ease;
 }
 
-/* Responsivo para celulares */
+/* --- 2. EL HEADER (ASEGURAR VISIBILIDAD) --- */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100; /* Subimos el z-index para que nada lo tape */
+    background: rgba(11, 16, 32, 0.95); /* Menos transparencia para que se vea claro */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--borde);
+    min-height: 70px; /* Altura mínima asegurada */
+}
+
+/* --- 3. RESPONSIVE TOTAL (EL BLOQUE CLAVE) --- */
 @media (max-width: 768px) {
-    .brand-logo {
-        height: 50px;          /* Más pequeño en celular para ahorrar espacio */
-    }
-    
+    /* Ajuste del contenedor del header */
     .header__inner {
-        flex-wrap: wrap;       /* Permite que los elementos se acomoden si no caben */
+        flex-direction: column; /* Apilamos los elementos verticalmente */
+        padding: 15px 0;
+        gap: 12px;
+    }
+
+    /* Ajuste del Logo en móvil */
+    .brand-logo {
+        height: 60px;       /* Tamaño ideal para celular */
+        margin-top: 0;      /* ELIMINAMOS los márgenes negativos en móvil */
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+
+    /* Ajuste del Menú de navegación */
+    .nav {
+        margin: 0 !important; /* Quitamos los márgenes laterales de PC */
+        width: 100%;
         justify-content: center;
+        gap: 8px;
+    }
+
+    .nav__link {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+
+    /* Acciones (Búsqueda y Luna) */
+    .header__actions {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .header__search {
+        flex: 0 1 200px; /* Que no ocupe todo el ancho si no es necesario */
+    }
+
+    .header__search input {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    /* Evitar que el video de noticias se pierda */
+    .video-news-card .news-thumb-v2 {
+        height: 200px; /* Altura cómoda para ver el video en vertical */
+    }
+}
+
+/* Ajuste extra para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .brand-logo {
+        height: 50px;
+    }
+    .nav__link {
+        font-size: 12px;
     }
 }
 /* --- Estenedor Principal de la Tarjeta --- */

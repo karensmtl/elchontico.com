@@ -361,4 +361,90 @@ body[data-theme="light"] .section-title {
 
 body[data-theme="light"] .ad-box img {
     border-color: #e2e8f0;
+}/* --- Estilos base del Header --- */
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    gap: 15px;
+}
+
+.brand-logo {
+    height: 50px; /* Tamaño estándar */
+    width: auto;
+    object-fit: contain;
+    transition: height 0.3s ease;
+}
+
+.nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav__link {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--texto-secundario);
+    white-space: nowrap; /* Evita que el texto se parta en dos líneas */
+}
+
+.nav__link.active {
+    color: var(--acento);
+}
+
+.header__actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- Ajustes Responsivos (Móviles y Tablets) --- */
+@media (max-width: 768px) {
+    .header__inner {
+        flex-wrap: wrap; /* Permite que los elementos bajen si no caben */
+        justify-content: space-around;
+        padding: 15px 0;
+    }
+
+    /* El logo y el menú se quedan arriba */
+    .brand-logo {
+        height: 40px; 
+        order: 1;
+    }
+
+    .nav {
+        order: 2;
+        gap: 10px;
+    }
+
+    /* La búsqueda baja a una segunda línea para ocupar el ancho */
+    .header__actions {
+        order: 3;
+        width: 100%; 
+        justify-content: space-between;
+        margin-top: 10px;
+        border-top: 1px solid var(--borde);
+        padding-top: 10px;
+    }
+
+    .header__search {
+        flex: 1;
+    }
+
+    .header__search input {
+        width: 100%; /* El buscador se expande en móvil */
+    }
+}
+
+/* --- Ajuste para pantallas muy pequeñas --- */
+@media (max-width: 480px) {
+    .nav__link {
+        font-size: 0.85rem;
+    }
+    
+    .brand-logo {
+        height: 35px;
+    }
 }

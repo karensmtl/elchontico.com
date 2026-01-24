@@ -28,14 +28,14 @@
 
 <main class="container">
     <div class="live-banner">
-        SORTEO 22 DE ENERO DEL 2026
+        SORTEO DÍA 23 DE ENERO DEL 2026
     </div>
 
     <div class="layout-full">
         <section class="content-full">
             <div class="card player-card">
                 <div class="card__header">
-                    <span class="live-badge">🔴 EN VIVO</span>
+               
                  <!--   <h2 class="card__title">Señal en vivo</h2>-->
                 </div>
                 
@@ -45,7 +45,7 @@
                     </div>
                     
                     <video id="main-player" class="player__video" autoplay muted playsinline>
-                        <source src="img/22.mp4" type="video/mp4">
+                        <source src="img/23.mp4" type="video/mp4">
                     </video>
 
                     <!-- Controles personalizados -->
@@ -98,17 +98,83 @@
 
     <!-- Sección Ver Más -->
     <section class="more-content">
-        <h2 class="section-title">📺 Ver Más Contenido</h2>
+        <h2 class="section-title">📺 Ver Más Resultados</h2>
         
         <div class="videos-grid">
+
+
+
+    
+
+              <!-- Video 1 -->
+<div class="video-card">
+    <div class="video-thumb">
+        <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="img/superchontico22.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+    <div class="video-info">
+        <h3>Sorteo del 22 de Enero SUPERCHONTICO</h3>
+        <p>Revive el sorteo del día anterior</p>
+        <span class="video-date">Hace 1 día</span>
+    </div>
+</div>
+
+
+    <!-- video 2 -->
+<div class="video-card">
+    <div class="video-thumb">
+        <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="img/22noche.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+    <div class="video-info">
+        <h3>Sorteo del 22 de Enero NOCHE</h3>
+        <p>Revive el sorteo del día anterior</p>
+        <span class="video-date">Hace 1 día</span>
+    </div>
+</div>
+
+    <!-- video 3 -->
+<div class="video-card">
+    <div class="video-thumb">
+        <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="img/22 DIA.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+    <div class="video-info">
+        <h3>Sorteo del 22 de Enero DÍA</h3>
+        <p>Revive el sorteo del día anterior</p>
+        <span class="video-date">Hace 1 día</span>
+    </div>
+</div>
+
+
+              <!-- imagen1 -->
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="img/22.jpeg" alt="imagen">
+                </div>
+                <div class="video-info">
+                    <h3>Resultado  del 22 de Enero</h3>
+                    <p>Revive el sorteo del día anterior</p>
+                    <span class="video-date">Hace 1 día</span>
+                </div>
+            </div>
+
+
+
+
             <!-- Video 1 -->
             <div class="video-card">
                 <div class="video-thumb">
                     <img src="img/21.png" alt="imagen">
-                    <span class="video-duration">24:15</span>
                 </div>
                 <div class="video-info">
-                    <h3>Sorteo del 21 de Enero</h3>
+                    <h3>Resultado del 21 de Enero</h3>
                     <p>Revive el sorteo del día anterior</p>
                     <span class="video-date">Hace 1 día</span>
                 </div>
@@ -118,27 +184,15 @@
             <div class="video-card">
                 <div class="video-thumb">
                     <img src="img/20.png" alt="imagen">
-                    <span class="video-duration">5:30</span>
+
                 </div>
                 <div class="video-info">
-                    <h3>Resultados de Recientes</h3>
+                    <h3>Resultado del 21 de Ener</h3>
                     <p>Todos los números ganadores</p>
                     <span class="video-date">Hace 2 días</span>
                 </div>
             </div>
-
-            <!-- Video 3 -->
-            <div class="video-card">
-                <div class="video-thumb">
-                    <img src="img/19.png" alt="imagen">
-                    <span class="video-duration">8:45</span>
-                </div>
-                <div class="video-info">
-                    <h3>Resultados de Recientes</h3>
-                    <p>Todos los números ganadores</p>
-                    <span class="video-date">Hace 3 días</span>
-                </div>
-            </div>
+    
 
     </section>
 
@@ -173,7 +227,7 @@
             playPauseBtn.textContent = '⏸️';
         } else {
             video.pause();
-            playPauseBtn.textContent = '▶️';
+            playPauseBtn.textContent = '►';
         }
     }
 

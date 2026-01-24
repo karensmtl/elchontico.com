@@ -9,12 +9,7 @@ if (Hls.isSupported()) {
     video.src = streamUrl;
 }
 
-const sorteosChontico = [
-    { fecha: "13 Ene 2026", sorteo: "Noche", numero: "4589 (5) 4" },
-    { fecha: "13 Ene 2026", sorteo: "Día",   numero: "2231 (5) 4" },
-    { fecha: "13 Ene 2026", sorteo: "Noche", numero: "5935 (5) 4" },
-    { fecha: "13 Ene 2026", sorteo: "Día",   numero: "9225 (5) 4" }
-];
+
 
 
 function cargarResultados() {
@@ -92,10 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const simularResultados = () => {
         if (!listaResultados) return;
 
-        const datosEjemplo = [
-            { fecha: 'Hoy 22 de enero', sorteo: 'Día', numero: '6987 / 4' },
-            { fecha: 'Ayer 21 de enero', sorteo: 'Noche', numero: '9529 / 4' }
-        ];
 
         listaResultados.innerHTML = datosEjemplo.map(item => `
             <li class="results__item">

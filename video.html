@@ -34,141 +34,104 @@
     <div class="layout-full">
         <section class="content-full">
             <div class="card player-card">
-                <div class="card__header">
-               
-                 <!--   <h2 class="card__title">Señal en vivo</h2>-->
-                </div>
-                
+                <div class="card__header"></div>
+
                 <div class="player-container">
                     <div id="mute-overlay" class="sound-overlay" onclick="enableSound()">
                         <span>🔊SONIDO</span>
                     </div>
-                    
+
                     <video id="main-player" class="player__video" autoplay muted playsinline>
                         <source src="img/23.mp4" type="video/mp4">
                     </video>
 
-                    <!-- Controles personalizados -->
                     <div class="custom-controls">
                         <div class="controls-row">
-                            <!-- Barra de progreso -->
                             <input type="range" class="progress-bar" id="progressBar" value="0" min="0" max="100">
-                            
                             <div class="time-display">
                                 <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
                             </div>
                         </div>
 
                         <div class="controls-row controls-buttons">
-                            <!-- Play/Pause -->
-                            <button class="control-btn" id="playPauseBtn" onclick="togglePlayPause()">
-                                ⏸️
-                            </button>
-
-                            <!-- Retroceder 10s -->
-                            <button class="control-btn" onclick="skipTime(-10)" title="Retroceder 10s">
-                                ⏪
-                            </button>
-
-                            <!-- Adelantar 10s -->
-                            <button class="control-btn" onclick="skipTime(10)" title="Adelantar 10s">
-                                ⏩
-                            </button>
+                            <button class="control-btn" id="playPauseBtn" onclick="togglePlayPause()">⏸️</button>
+                            <button class="control-btn" onclick="skipTime(-10)" title="Retroceder 10s">⏪</button>
+                            <button class="control-btn" onclick="skipTime(10)" title="Adelantar 10s">⏩</button>
 
                             <div class="spacer"></div>
 
-                            <!-- Volumen -->
                             <div class="volume-control">
-                                <button class="control-btn" id="volumeBtn" onclick="toggleMute()">
-                                    🔊
-                                </button>
+                                <button class="control-btn" id="volumeBtn" onclick="toggleMute()">🔊</button>
                                 <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="100">
                             </div>
 
-                            <!-- Pantalla completa -->
-                            <button class="control-btn" onclick="toggleFullscreen()" title="Pantalla completa">
-                                ⛶
-                            </button>
+                            <button class="control-btn" onclick="toggleFullscreen()" title="Pantalla completa">⛶</button>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
     </div>
 
-    <!-- Sección Ver Más -->
     <section class="more-content">
         <h2 class="section-title">📺 Ver Más Resultados</h2>
-        
+
         <div class="videos-grid">
 
-
-
-    
-
-              <!-- Video 1 -->
-<div class="video-card">
-    <div class="video-thumb">
-        <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
-            <source src="img/superchontico22.mp4" type="video/mp4">
-            Tu navegador no soporta video.
-        </video>
-    </div>
-    <div class="video-info">
-        <h3>Sorteo del 22 de Enero SUPERCHONTICO</h3>
-        <p>Revive el sorteo del día anterior</p>
-        <span class="video-date">Hace 1 día</span>
-    </div>
-</div>
-
-
-    <!-- video 2 -->
-<div class="video-card">
-    <div class="video-thumb">
-        <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
-            <source src="img/22noche.mp4" type="video/mp4">
-            Tu navegador no soporta video.
-        </video>
-    </div>
-    <div class="video-info">
-        <h3>Sorteo del 22 de Enero NOCHE</h3>
-        <p>Revive el sorteo del día anterior</p>
-        <span class="video-date">Hace 1 día</span>
-    </div>
-</div>
-
-    <!-- video 3 -->
-<div class="video-card">
-    <div class="video-thumb">
-        <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
-            <source src="img/22 DIA.mp4" type="video/mp4">
-            Tu navegador no soporta video.
-        </video>
-    </div>
-    <div class="video-info">
-        <h3>Sorteo del 22 de Enero DÍA</h3>
-        <p>Revive el sorteo del día anterior</p>
-        <span class="video-date">Hace 1 día</span>
-    </div>
-</div>
-
-
-              <!-- imagen1 -->
             <div class="video-card">
                 <div class="video-thumb">
-                    <img src="img/22.jpeg" alt="imagen">
+                    <video class="secondary-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                        <source src="img/superchontico22.mp4" type="video/mp4">
+                        Tu navegador no soporta video.
+                    </video>
                 </div>
                 <div class="video-info">
-                    <h3>Resultado  del 22 de Enero</h3>
+                    <h3>Sorteo del 22 de Enero SUPERCHONTICO</h3>
                     <p>Revive el sorteo del día anterior</p>
                     <span class="video-date">Hace 1 día</span>
                 </div>
             </div>
 
+            <div class="video-card">
+                <div class="video-thumb">
+                    <video class="secondary-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                        <source src="img/22noche.mp4" type="video/mp4">
+                        Tu navegador no soporta video.
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>Sorteo del 22 de Enero NOCHE</h3>
+                    <p>Revive el sorteo del día anterior</p>
+                    <span class="video-date">Hace 1 día</span>
+                </div>
+            </div>
 
+            <div class="video-card">
+                <div class="video-thumb">
+                    <video class="secondary-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                        <source src="img/22 DIA.mp4" type="video/mp4">
+                        Tu navegador no soporta video.
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>Sorteo del 22 de Enero DÍA</h3>
+                    <p>Revive el sorteo del día anterior</p>
+                    <span class="video-date">Hace 1 día</span>
+                </div>
+            </div>
 
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="img/22.jpeg" alt="imagen">
+                </div>
+                <div class="video-info">
+                    <h3>Resultado del 22 de Enero</h3>
+                    <p>Revive el sorteo del día anterior</p>
+                    <span class="video-date">Hace 1 día</span>
+                </div>
+            </div>
 
-            <!-- Video 1 -->
             <div class="video-card">
                 <div class="video-thumb">
                     <img src="img/21.png" alt="imagen">
@@ -180,11 +143,9 @@
                 </div>
             </div>
 
-            <!-- Video 2 -->
             <div class="video-card">
                 <div class="video-thumb">
                     <img src="img/20.png" alt="imagen">
-
                 </div>
                 <div class="video-info">
                     <h3>Resultado del 21 de Ener</h3>
@@ -192,8 +153,8 @@
                     <span class="video-date">Hace 2 días</span>
                 </div>
             </div>
-    
 
+        </div>
     </section>
 
     <section class="ad-container">
@@ -204,123 +165,6 @@
     </section>
 </main>
 
-<script>
-    const video = document.getElementById('main-player');
-    const overlay = document.getElementById('mute-overlay');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const progressBar = document.getElementById('progressBar');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const volumeBtn = document.getElementById('volumeBtn');
-    const currentTimeEl = document.getElementById('currentTime');
-    const durationEl = document.getElementById('duration');
-
-    function enableSound() {
-        video.muted = false;
-        video.volume = 1.0;
-        overlay.style.display = 'none';
-        video.play();
-    }
-
-    function togglePlayPause() {
-        if (video.paused) {
-            video.play();
-            playPauseBtn.textContent = '⏸️';
-        } else {
-            video.pause();
-            playPauseBtn.textContent = '►';
-        }
-    }
-
-    function skipTime(seconds) {
-        video.currentTime += seconds;
-    }
-
-    function toggleMute() {
-        video.muted = !video.muted;
-        updateVolumeIcon();
-    }
-
-    function updateVolumeIcon() {
-        if (video.muted || video.volume === 0) {
-            volumeBtn.textContent = '🔇';
-        } else if (video.volume < 0.5) {
-            volumeBtn.textContent = '🔉';
-        } else {
-            volumeBtn.textContent = '🔊';
-        }
-    }
-
-    function toggleFullscreen() {
-        if (!document.fullscreenElement) {
-            video.requestFullscreen().catch(err => console.log(err));
-        } else {
-            document.exitFullscreen();
-        }
-    }
-
-    function formatTime(seconds) {
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-    }
-
-    // Actualizar progreso
-    video.addEventListener('timeupdate', () => {
-        const progress = (video.currentTime / video.duration) * 100;
-        progressBar.value = progress;
-        currentTimeEl.textContent = formatTime(video.currentTime);
-    });
-
-    // Mostrar duración
-    video.addEventListener('loadedmetadata', () => {
-        durationEl.textContent = formatTime(video.duration);
-    });
-
-    // Cambiar progreso
-    progressBar.addEventListener('input', () => {
-        const time = (progressBar.value / 100) * video.duration;
-        video.currentTime = time;
-    });
-
-    // Control de volumen
-    volumeSlider.addEventListener('input', () => {
-        video.volume = volumeSlider.value / 100;
-        video.muted = false;
-        updateVolumeIcon();
-    });
-
-    // Intento de reproducción automática
-    window.addEventListener('load', () => {
-        video.play().catch(() => {
-            console.log("Esperando interacción para el audio");
-        });
-    });
-
-    // ============================================
-    // CAMBIO DE TEMA DÍA/NOCHE
-    // ============================================
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Cargar tema guardado
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    body.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
-
-    // Cambiar tema al hacer clic
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
-    });
-
-    function updateThemeIcon(theme) {
-        themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-    }
-</script>
-
+<script src="video.js"></script>
 </body>
 </html>

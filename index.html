@@ -1,120 +1,130 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>elchontico.com</title>
-    <link rel="stylesheet" href="./index.css" />
-    <link rel="stylesheet" href="./audio-button.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Chontico - Sorteos en Vivo</title>
+    <link rel="stylesheet" href="index.css">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script src="./index.js" defer></script>
 </head>
 <body>
-<header class="header">
-    <div class="container header__inner">
-        <img src="img/logo.png" alt="Elchontico.com" class="brand-logo">
-        <nav class="nav">
-            <a href="index.html" class="nav__link active">Inicio</a>
-            <a href="resultadoschontico.html" class="nav__link">Resultados </a>
-        </nav>
-        <div class="header__actions">
-            <div class="header__search">
-                <input type="text" placeholder="Buscar sorteo...">
-            </div>
-            <button id="theme-toggle" class="theme-btn">
-                <span class="icon-sun">☀️</span>
-                <span class="icon-moon">🌙</span>
-            </button>
-        </div>
-    </div>
-</header>
-
-
-<main class="main container">
-    <div class="layout">
-        <section class="content">
-            <div class="card player-card">
-                <div class="card__header">
-                    <span class="live-badge">🔴 EN VIVO</span>
-                     <!-- <h2 class="card__title">Señal en vivo</h2>-->
+    <!-- Header -->
+    <header class="header">
+        <div class="container header__inner">
+            <img src="img/logo.png" alt="El Chontico" class="brand-logo">
+            <nav class="nav">
+                <a href="#" class="nav__link active">Inicio</a>
+                <a href="#" class="nav__link">Sorteos en Vivo</a>
+                <a href="#" class="nav__link" id="resultadosLink">Ver Resultados</a>
+            </nav>
+            <div class="header__actions">
+                <div class="header__search">
+                    <input type="text" placeholder="Buscar sorteo..." id="searchInput">
                 </div>
-                <div class="player">
-                    <video id="chontico-player" class="player__video" controls autoplay muted></video>
+                <button id="theme-toggle" class="theme-btn">
+                    <span class="icon-sun">☀️</span>
+                    <span class="icon-moon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main container">
+        <!-- Live Badge -->
+        <div class="live-indicator">
+            <span class="dot"></span>
+            EN VIVO AHORA
+        </div>
+
+        <!-- Video Layout: Main Player + Sidebar -->
+        <div class="video-layout">
+            <!-- Main Video Player -->
+            <div class="main-player">
+                <div class="video-wrapper">
+                    <video id="chontico-player" class="main-video" controls autoplay muted></video>
                     
-                    <!-- Botón de Activar Audio -->
+                    <!-- Play Overlay -->
+                    <div class="play-overlay hidden" id="playOverlay">
+                        <button class="play-button">▶</button>
+                    </div>
+
+                    <!-- Audio Activation Button -->
                     <div class="audio-btn-overlay" id="audioBtnOverlay">
                         <button class="activate-audio-btn" id="activateAudioBtn">
                             🔊 Activar Audio
                         </button>
                     </div>
+
+                    <!-- Video Info -->
+                    <div class="video-info">
+                        <h2 id="videoTitle">Chontico en Vivo</h2>
+                        <p id="videoDate">Transmisión en vivo</p>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Sidebar Videos -->
+            <aside class="sidebar-videos">
+                <h3 class="sidebar-title">Más Sorteos</h3>
+                
+                <div class="video-list" id="videoList">
+                    <!-- Videos se cargarán aquí -->
+                </div>
+            </aside>
+        </div>
+
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <h3 class="section-title">Explorar Sorteos</h3>
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="todos">Todos</button>
+                <button class="filter-tab" data-filter="hoy">Hoy</button>
+                <button class="filter-tab" data-filter="semana">Esta Semana</button>
+                <button class="filter-tab" data-filter="mes">Este Mes</button>
             </div>
         </section>
 
+        <!-- Video Grid -->
+        <section class="video-grid" id="videoGrid">
+            <!-- Videos filtrados aparecerán aquí -->
+        </section>
 
+        <!-- Results Section -->
+        <section class="results-section">
+            <div class="results-header">
+                <h2 class="section-title">Resultados de Sorteos</h2>
+                <button class="btn-primary" id="verTodosResultados">
+                    📄 Ver Todos los Resultados (PDF)
+                </button>
+            </div>
+            <p class="results-description">
+                Consulta los números ganadores de sorteos anteriores. Haz clic en el botón para ver el documento completo.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <p class="footer__muted">© 2025 El Chontico. Todos los derechos reservados.</p>
+            <div class="footer__links">
+                <a href="#">Términos</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal para PDF -->
+    <div class="modal" id="pdfModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">✕</button>
+            <h2>Resultados del Chontico</h2>
+            <iframe id="pdfViewer" src="" width="100%" height="600px"></iframe>
+        </div>
     </div>
 
-    <section class="actualidad">
-        <div class="actualidad__header">
-            <h2 class="actualidad__title">SORTEOS EN VIVO</h2>
-            <a href="resultadoschontico.html" class="actualidad__link">Ver todos los Resultados ></a>
-        </div>
-        
-        <div class="actualidad__grid">
-         <a href="video.html" class="news-card-v2 video-news-card" style="text-decoration: none; color: inherit;">
-                <div class="news-thumb-v2">
-                    <video id="newsVideo" muted loop playsinline autoplay>
-                        <source src="img/19.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="news-content-v2">
-                    <h4>Sorteo Chontico</h4>
-                    <p>Aquí puedes ver el último resultado del chontico.</p>
-                    <a href="video.html" class="read-more">Ver ahora ></a>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <aside class="ad-section">
-        <span class="ad-label">PUBLICIDAD</span>
-        <div class="ad-box-final">
-            <img src="./img/genio.jpg" alt="Publicidad" class="ad-img-final">
-        </div>
-    </aside>
-</main>
-
-<script>
-// Script para activar audio
-document.addEventListener('DOMContentLoaded', function() {
-    const video = document.getElementById('chontico-player');
-    const audioBtn = document.getElementById('activateAudioBtn');
-    const audioOverlay = document.getElementById('audioBtnOverlay');
-    
-    // Intentar activar audio automáticamente
-    video.muted = false;
-    
-    video.play().catch(function() {
-        // Si falla, mostrar el botón
-        video.muted = true;
-        video.play();
-        audioOverlay.style.display = 'flex';
-    });
-    
-    // Al hacer clic en el botón
-    audioBtn.addEventListener('click', function() {
-        video.muted = false;
-        audioOverlay.style.display = 'none';
-    });
-    
-    // También activar con cualquier click si el botón no funcionó
-    document.body.addEventListener('click', function() {
-        if (video.muted) {
-            video.muted = false;
-            audioOverlay.style.display = 'none';
-        }
-    });
-});
-</script>
+    <script src="index.js"></script>
 </body>
 </html>

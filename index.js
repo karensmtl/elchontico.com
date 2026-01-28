@@ -1,5 +1,6 @@
 // ============ DATA DE VIDEOS ============
 const videosData = [
+    
     {
         id: 1,
         title: "Chontico - Transmisión en Vivo",
@@ -11,8 +12,19 @@ const videosData = [
         duration: "EN VIVO",
         isLive: true
     },
+        {
+        id: 5,
+        title: "SORTEO NOCHE MARTES 27 DE ENERO",
+        date: "2026-01-27",
+        dateLabel: "Hoy",
+        category: "hoy",
+        videoSrc: "img/27n.mp4",
+        thumbnail: "img/portadaNOCHE.PNG",
+        duration: "01:30"
+    },
+
     {
-        id: 2,
+        id: 4,
         title: "SORTEO DÍA MARTES 27 DE ENERO",
         date: "2026-01-27",
         dateLabel: "Hoy",
@@ -32,7 +44,7 @@ const videosData = [
         duration: "01:30"
     },
     {
-        id: 4,
+        id: 2,
         title: "SORTEO DÍA LUNES 26 DE ENERO",
         date: "2025-01-24",
         dateLabel: "Hace 3 días",
@@ -42,7 +54,7 @@ const videosData = [
         duration: "01:30"
     },
     {
-        id: 5,
+        id: 1,
         title: "SORTEO NOCHE DOMINGO 25 DE ENERO",
         date: "2025-01-23",
         dateLabel: "Hace 4 días",

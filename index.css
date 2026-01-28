@@ -246,36 +246,40 @@ body.modo-claro .theme-btn .icon-sun {
     transform: scale(1.1);
 }
 
-/* Audio Button */
+/* Audio Button - CORREGIDO */
 .audio-btn-overlay {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 100;
     display: none;
+    pointer-events: none;
 }
 
 .audio-btn-overlay.show {
     display: block;
+    pointer-events: auto;
 }
 
 .activate-audio-btn {
-    background: #ffc107;
-    color: #000;
+    background: #ff0d00;
+    color: #fff;
     border: none;
     padding: 12px 24px;
     border-radius: 30px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(255, 193, 7, 0.4);
+    box-shadow: 0 4px 20px rgba(255, 3, 3, 0.4);
     transition: all 0.3s;
     animation: pulse 2s infinite;
+    pointer-events: auto;
 }
 
 .activate-audio-btn:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(255, 3, 3, 0.6);
 }
 
 @keyframes pulse {
@@ -641,58 +645,47 @@ body.modo-claro .theme-btn .icon-sun {
 }
 
 @media (max-width: 768px) {
-    .container {
-        width: 92vw;
-    }
-
     .header__inner {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas: 
+            "logo theme"
+            "menu menu";
+        align-items: center;
+        padding: 8px 15px;
+        gap: 10px;
     }
 
     .brand-logo {
-        height: 50px;
-        margin: 0 auto;
-    }
-
-    .nav {
-        justify-content: center;
-        flex-wrap: wrap;
+        grid-area: logo;
+        width: 60px;
+        height: auto;
+        justify-self: center;
     }
 
     .header__actions {
-        flex-direction: column;
+        grid-area: theme;
+        justify-self: end;
+    }
+
+    .nav {
+        grid-area: menu;
+        display: flex;
+        justify-content: space-around;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 4px;
         width: 100%;
     }
 
-    .header__search input {
-        width: 100%;
-    }
-
-    .video-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 15px;
-    }
-
-    .results-header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .btn-primary {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .footer__inner {
-        flex-direction: column;
+    .nav__link {
+        font-size: 13px;
+        padding: 5px;
         text-align: center;
     }
 
-    .modal-content {
-        padding: 20px;
-        width: 95%;
+    .theme-btn {
+        padding: 5px;
+        font-size: 1.2rem;
     }
 }
 

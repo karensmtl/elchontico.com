@@ -1,34 +1,43 @@
 // ============ DATA DE VIDEOS ============
 const videosData = [
-    
     {
         id: 1,
         title: "Chontico - Transmisión en Vivo",
         date: "2025-01-27",
         dateLabel: "EN VIVO AHORA",
         category: "hoy",
-        videoSrc: "LIVE_STREAM", // Marcador especial para el stream en vivo
+        videoSrc: "LIVE_STREAM",
         thumbnail: "img/live-thumb.jpg",
         duration: "EN VIVO",
         isLive: true
     },
-        {
-        id: 5,
-        title: "SORTEO NOCHE MARTES 27 DE ENERO",
+     {
+     id: 6,
+        title: "SORTEO DÍA MIERCOLES 28 DE ENERO",
         date: "2026-01-27",
         dateLabel: "Hoy",
         category: "hoy",
-        videoSrc: "img/27n.mp4",
-        thumbnail: "img/portadaNOCHE.PNG",
+        videoSrc: "img/28d.mp4",
+        thumbnail: "img/portadadía.PNG",
         duration: "01:30"
     },
 
     {
+        id: 5,
+        title: "SORTEO NOCHE MARTES 27 DE ENERO",
+        date: "2026-01-27",
+        dateLabel: "ayer",
+        category: "ayer",
+        videoSrc: "img/27n.mp4",
+        thumbnail: "img/portadaNOCHE.PNG",
+        duration: "01:30"
+    },
+    {
         id: 4,
         title: "SORTEO DÍA MARTES 27 DE ENERO",
         date: "2026-01-27",
-        dateLabel: "Hoy",
-        category: "hoy",
+        dateLabel: "ayer",
+        category: "ayer",
         videoSrc: "img/27dia.mp4",
         thumbnail: "img/portadadía.PNG",
         duration: "01:30"
@@ -43,50 +52,16 @@ const videosData = [
         thumbnail: "img/portadaNOCHE.PNG",
         duration: "01:30"
     },
-    {
-        id: 2,
-        title: "SORTEO DÍA LUNES 26 DE ENERO",
-        date: "2025-01-24",
-        dateLabel: "Hace 3 días",
-        category: "semana",
-        videoSrc: "img/26dia.mp4",
-        thumbnail: "img/portadadía.PNG",
-        duration: "01:30"
-    },
-    {
-        id: 1,
-        title: "SORTEO NOCHE DOMINGO 25 DE ENERO",
-        date: "2025-01-23",
-        dateLabel: "Hace 4 días",
-        category: "semana",
-        videoSrc: "img/25 noche.mp4",
-        thumbnail: "img/portadaNOCHE.PNG",
-        duration: "01:30"
-    },
-  
-
 
 ];
 
 // ============ CONFIGURACIÓN HLS ============
 const streamUrl = "https://streaming.totalmedios.com.co/live/chontico/index.m3u8";
 
-// ============ ELEMENTOS DEL DOM ============
-const mainVideo = document.getElementById('chontico-player');
-const playOverlay = document.getElementById('playOverlay');
-const videoTitle = document.getElementById('videoTitle');
-const videoDate = document.getElementById('videoDate');
-const videoList = document.getElementById('videoList');
-const videoGrid = document.getElementById('videoGrid');
-const searchInput = document.getElementById('searchInput');
-const themeToggle = document.getElementById('theme-toggle');
-const audioBtnOverlay = document.getElementById('audioBtnOverlay');
-const activateAudioBtn = document.getElementById('activateAudioBtn');
-const pdfModal = document.getElementById('pdfModal');
-const closeModal = document.getElementById('closeModal');
-const verTodosResultados = document.getElementById('verTodosResultados');
-const resultadosLink = document.getElementById('resultadosLink');
-
+// Variables globales
+let mainVideo, playOverlay, videoTitle, videoDate, videoList, videoGrid;
+let searchInput, themeToggle, audioBtnOverlay, activateAudioBtn;
+let pdfModal, closeModal, verTodosResultados, resultadosLink;
 let currentVideoIndex = 0;
 let filteredVideos = [...videosData];
 let hls = null;
@@ -94,12 +69,151 @@ let isLiveStreamActive = true;
 
 // ============ INICIALIZACIÓN ============
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 Iniciando aplicación...');
+    
+    // Obtener elementos del DOM DESPUÉS de que cargue
+    mainVideo = document.getElementById('chontico-player');
+    playOverlay = document.getElementById('playOverlay');
+    videoTitle = document.getElementById('videoTitle');
+    videoDate = document.getElementById('videoDate');
+    videoList = document.getElementById('videoList');
+    videoGrid = document.getElementById('videoGrid');
+    searchInput = document.getElementById('searchInput');
+    themeToggle = document.getElementById('theme-toggle');
+    audioBtnOverlay = document.getElementById('audioBtnOverlay');
+    activateAudioBtn = document.getElementById('activateAudioBtn');
+    pdfModal = document.getElementById('pdfModal');
+    closeModal = document.getElementById('closeModal');
+    verTodosResultados = document.getElementById('verTodosResultados');
+    resultadosLink = document.getElementById('resultadosLink');
+    
+    // Verificar elementos críticos
+    console.log('=== VERIFICACIÓN DE ELEMENTOS ===');
+    console.log('mainVideo:', mainVideo ? '✅' : '❌');
+    console.log('activateAudioBtn:', activateAudioBtn ? '✅' : '❌');
+    console.log('audioBtnOverlay:', audioBtnOverlay ? '✅' : '❌');
+    
+    if (!activateAudioBtn) {
+        console.error('❌ CRÍTICO: No se encontró el botón de audio!');
+        return;
+    }
+    
+    if (!audioBtnOverlay) {
+        console.error('❌ CRÍTICO: No se encontró el overlay de audio!');
+        return;
+    }
+    
+    if (!mainVideo) {
+        console.error('❌ CRÍTICO: No se encontró el video!');
+        return;
+    }
+    
+    // Inicializar aplicación
+    setupAudioHandling(); // PRIMERO configurar el audio
     initializeLiveStream();
     renderSidebarVideos();
     renderVideoGrid(videosData);
     setupEventListeners();
-    setupAudioHandling();
+    
+    console.log('✅ Aplicación inicializada correctamente');
 });
+
+// ============ MANEJO DE AUDIO - PRIMERA PRIORIDAD ============
+function setupAudioHandling() {
+    console.log('🔧 Configurando manejo de audio...');
+    
+    if (!activateAudioBtn) {
+        console.error('❌ No se puede configurar audio: botón no existe');
+        return;
+    }
+    
+    // MÉTODO 1: Click normal
+    activateAudioBtn.onclick = function(e) {
+        console.log('🔊 CLICK DETECTADO (onclick)');
+        activarAudio(e);
+    };
+    
+    // MÉTODO 2: addEventListener
+    activateAudioBtn.addEventListener('click', function(e) {
+        console.log('🔊 CLICK DETECTADO (addEventListener)');
+        activarAudio(e);
+    }, false);
+    
+    // MÉTODO 3: Mousedown (backup)
+    activateAudioBtn.addEventListener('mousedown', function(e) {
+        console.log('👆 MOUSEDOWN detectado');
+        e.preventDefault();
+        e.stopPropagation();
+    }, false);
+    
+    // MÉTODO 4: Touch para móviles
+    activateAudioBtn.addEventListener('touchstart', function(e) {
+        console.log('📱 TOUCH detectado');
+        activarAudio(e);
+    }, false);
+    
+    // Click en el video también activa
+    if (mainVideo) {
+        mainVideo.addEventListener('click', function() {
+            if (mainVideo.muted && audioBtnOverlay.classList.contains('show')) {
+                console.log('🔊 Activando audio por click en video');
+                mainVideo.muted = false;
+                ocultarBotonAudio();
+            }
+        });
+    }
+    
+    console.log('✅ Manejo de audio configurado');
+}
+
+// Función centralizada para activar audio
+function activarAudio(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    
+    console.log('🎵 === ACTIVANDO AUDIO ===');
+    console.log('Estado antes - Muted:', mainVideo.muted);
+    console.log('Estado antes - Paused:', mainVideo.paused);
+    
+    // Activar audio
+    mainVideo.muted = false;
+    mainVideo.volume = 1.0;
+    
+    console.log('Estado después - Muted:', mainVideo.muted);
+    console.log('Estado después - Volume:', mainVideo.volume);
+    
+    // Ocultar botón
+    ocultarBotonAudio();
+    
+    // Reproducir si está pausado
+    if (mainVideo.paused) {
+        mainVideo.play()
+            .then(() => console.log('✅ Video reproduciendo con audio'))
+            .catch(err => console.error('❌ Error al reproducir:', err));
+    } else {
+        console.log('✅ Audio activado (video ya estaba reproduciendo)');
+    }
+}
+
+// Función para ocultar el botón de audio
+function ocultarBotonAudio() {
+    if (audioBtnOverlay) {
+        audioBtnOverlay.classList.remove('show');
+        audioBtnOverlay.style.display = 'none';
+        console.log('👻 Botón de audio ocultado');
+    }
+}
+
+// Función para mostrar el botón de audio
+function mostrarBotonAudio() {
+    if (audioBtnOverlay) {
+        audioBtnOverlay.classList.add('show');
+        audioBtnOverlay.style.display = 'block';
+        console.log('👁️ Botón de audio mostrado');
+    }
+}
 
 // ============ INICIALIZAR STREAM EN VIVO HLS ============
 function initializeLiveStream() {
@@ -114,24 +228,24 @@ function initializeLiveStream() {
         hls.attachMedia(mainVideo);
         
         hls.on(Hls.Events.MANIFEST_PARSED, function() {
-            console.log('Stream cargado correctamente');
+            console.log('📡 Stream cargado correctamente');
             playLiveStream();
         });
         
         hls.on(Hls.Events.ERROR, function(event, data) {
-            console.error('Error en HLS:', data);
+            console.error('❌ Error en HLS:', data);
             if (data.fatal) {
                 switch(data.type) {
                     case Hls.ErrorTypes.NETWORK_ERROR:
-                        console.log('Error de red, intentando recuperar...');
+                        console.log('🔄 Error de red, recuperando...');
                         hls.startLoad();
                         break;
                     case Hls.ErrorTypes.MEDIA_ERROR:
-                        console.log('Error de media, intentando recuperar...');
+                        console.log('🔄 Error de media, recuperando...');
                         hls.recoverMediaError();
                         break;
                     default:
-                        console.log('Error fatal, reiniciando stream...');
+                        console.log('🔄 Error fatal, reiniciando...');
                         hls.destroy();
                         setTimeout(initializeLiveStream, 3000);
                         break;
@@ -139,14 +253,13 @@ function initializeLiveStream() {
             }
         });
     } else if (mainVideo.canPlayType('application/vnd.apple.mpegurl')) {
-        // Soporte nativo en Safari
         mainVideo.src = streamUrl;
         mainVideo.addEventListener('loadedmetadata', function() {
             playLiveStream();
         });
     } else {
-        console.error('HLS no soportado en este navegador');
-        alert('Tu navegador no soporta transmisión en vivo. Por favor usa Chrome, Firefox o Safari.');
+        console.error('❌ HLS no soportado');
+        alert('Tu navegador no soporta transmisión en vivo.');
     }
     
     currentVideoIndex = 0;
@@ -156,15 +269,25 @@ function initializeLiveStream() {
 
 // ============ REPRODUCIR STREAM EN VIVO ============
 function playLiveStream() {
+    console.log('▶️ Intentando reproducir stream...');
+    
+    // Intentar con audio primero
     mainVideo.muted = false;
     mainVideo.play().then(() => {
+        console.log('✅ Stream reproduciendo CON audio');
         playOverlay.classList.add('hidden');
-        audioBtnOverlay.classList.remove('show');
+        ocultarBotonAudio();
     }).catch((error) => {
-        console.log('Reproducción automática bloqueada:', error);
+        console.log('⚠️ Autoplay bloqueado, activando modo mute');
+        // Reproducir muteado y mostrar botón
         mainVideo.muted = true;
-        mainVideo.play();
-        audioBtnOverlay.classList.add('show');
+        mainVideo.play().then(() => {
+            console.log('🔇 Stream reproduciendo SIN audio');
+            playOverlay.classList.add('hidden');
+            mostrarBotonAudio();
+        }).catch(err => {
+            console.error('❌ Error crítico al reproducir:', err);
+        });
     });
 }
 
@@ -173,7 +296,6 @@ function loadRecordedVideo(index) {
     currentVideoIndex = index;
     const video = videosData[index];
     
-    // Si es el stream en vivo, reiniciar HLS
     if (video.videoSrc === "LIVE_STREAM") {
         if (hls) {
             hls.destroy();
@@ -181,7 +303,6 @@ function loadRecordedVideo(index) {
         initializeLiveStream();
         isLiveStreamActive = true;
     } else {
-        // Destruir HLS y cargar video grabado
         if (hls) {
             hls.destroy();
             hls = null;
@@ -191,47 +312,32 @@ function loadRecordedVideo(index) {
         mainVideo.src = video.videoSrc;
         videoTitle.textContent = video.title;
         videoDate.textContent = video.dateLabel;
-        
-        // Mostrar overlay de play
         playOverlay.classList.remove('hidden');
     }
     
-    // Marcar video activo en sidebar
     updateActiveSidebarVideo(index);
 }
 
 // ============ REPRODUCCIÓN DE VIDEO ============
 function playVideo() {
+    console.log('▶️ Intentando reproducir video...');
+    
     mainVideo.muted = false;
     mainVideo.play().then(() => {
+        console.log('✅ Video reproduciendo CON audio');
         playOverlay.classList.add('hidden');
-        audioBtnOverlay.classList.remove('show');
+        ocultarBotonAudio();
     }).catch((error) => {
-        console.log('Error al reproducir:', error);
+        console.log('⚠️ Reproducción bloqueada, modo mute');
         mainVideo.muted = true;
-        mainVideo.play();
-        audioBtnOverlay.classList.add('show');
+        mainVideo.play().then(() => {
+            console.log('🔇 Video reproduciendo SIN audio');
+            playOverlay.classList.add('hidden');
+            mostrarBotonAudio();
+        }).catch(err => {
+            console.error('❌ Error al reproducir:', err);
+        });
     });
-}
-
-// ============ MANEJO DE AUDIO ============
-function setupAudioHandling() {
-    // Activar audio con botón
-    activateAudioBtn.addEventListener('click', () => {
-        mainVideo.muted = false;
-        audioBtnOverlay.classList.remove('show');
-        if (mainVideo.paused) {
-            mainVideo.play();
-        }
-    });
-    
-    // También con cualquier click en el documento
-    document.addEventListener('click', function activateAudio() {
-        if (mainVideo.muted) {
-            mainVideo.muted = false;
-            audioBtnOverlay.classList.remove('show');
-        }
-    }, { once: true });
 }
 
 // ============ RENDER SIDEBAR VIDEOS ============
@@ -248,7 +354,6 @@ function renderSidebarVideos() {
             }
         };
         
-        // Para el video en vivo, mostrar indicador especial, para grabados usar imagen de portada
         const thumbContent = video.isLive ? 
             `<div class="live-thumb-indicator">
                 <span class="live-pulse">🔴</span>
@@ -285,7 +390,7 @@ function updateActiveSidebarVideo(index) {
 function renderVideoGrid(videos) {
     videoGrid.innerHTML = '';
     
-    videos.forEach((video, index) => {
+    videos.forEach((video) => {
         const card = document.createElement('div');
         card.className = 'grid-video-card';
         card.onclick = () => {
@@ -296,7 +401,6 @@ function renderVideoGrid(videos) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
         
-        // Contenido del thumbnail: indicador LIVE o imagen de portada
         const thumbContent = video.isLive ?
             `<div class="live-thumb-indicator large">
                 <span class="live-pulse large">🔴</span>
@@ -319,10 +423,12 @@ function renderVideoGrid(videos) {
     });
 }
 
-// ============ FILTROS ============
+// ============ EVENT LISTENERS ============
 function setupEventListeners() {
-    // Play overlay click
-    playOverlay.addEventListener('click', playVideo);
+    // Play overlay
+    if (playOverlay) {
+        playOverlay.addEventListener('click', playVideo);
+    }
     
     // Filter tabs
     const filterTabs = document.querySelectorAll('.filter-tab');
@@ -337,33 +443,46 @@ function setupEventListeners() {
     });
     
     // Search
-    searchInput.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const filtered = videosData.filter(video => 
-            video.title.toLowerCase().includes(searchTerm)
-        );
-        renderVideoGrid(filtered);
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filtered = videosData.filter(video => 
+                video.title.toLowerCase().includes(searchTerm)
+            );
+            renderVideoGrid(filtered);
+        });
+    }
     
     // Theme toggle
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('modo-claro');
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('modo-claro');
+        });
+    }
     
     // PDF Modal
-    verTodosResultados.addEventListener('click', openPdfModal);
-    resultadosLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        openPdfModal();
-    });
-    closeModal.addEventListener('click', closePdfModal);
+    if (verTodosResultados) {
+        verTodosResultados.addEventListener('click', openPdfModal);
+    }
     
-    // Cerrar modal al hacer click fuera
-    pdfModal.addEventListener('click', (e) => {
-        if (e.target === pdfModal) {
-            closePdfModal();
-        }
-    });
+    if (resultadosLink) {
+        resultadosLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            openPdfModal();
+        });
+    }
+    
+    if (closeModal) {
+        closeModal.addEventListener('click', closePdfModal);
+    }
+    
+    if (pdfModal) {
+        pdfModal.addEventListener('click', (e) => {
+            if (e.target === pdfModal) {
+                closePdfModal();
+            }
+        });
+    }
 }
 
 function filterVideos(filter) {
@@ -377,6 +496,7 @@ function filterVideos(filter) {
             filtered = videosData.filter(v => v.category === 'hoy' || v.category === 'semana');
             break;
         case 'mes':
+        case 'todos':
             filtered = videosData;
             break;
         default:
@@ -389,18 +509,28 @@ function filterVideos(filter) {
 // ============ MODAL PDF ============
 function openPdfModal() {
     const pdfUrl = 'resultados-chontico.pdf';
-    document.getElementById('pdfViewer').src = pdfUrl;
-    pdfModal.classList.add('show');
-    document.body.style.overflow = 'hidden';
+    const pdfViewer = document.getElementById('pdfViewer');
+    if (pdfViewer) {
+        pdfViewer.src = pdfUrl;
+    }
+    if (pdfModal) {
+        pdfModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closePdfModal() {
-    pdfModal.classList.remove('show');
-    document.body.style.overflow = 'auto';
-    document.getElementById('pdfViewer').src = '';
+    if (pdfModal) {
+        pdfModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+    const pdfViewer = document.getElementById('pdfViewer');
+    if (pdfViewer) {
+        pdfViewer.src = '';
+    }
 }
 
-// ============ CLEANUP AL CERRAR LA PÁGINA ============
+// ============ CLEANUP ============
 window.addEventListener('beforeunload', () => {
     if (hls) {
         hls.destroy();

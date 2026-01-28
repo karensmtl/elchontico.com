@@ -18,7 +18,7 @@ const videosData = [
         dateLabel: "Hoy",
         category: "hoy",
         videoSrc: "img/28d.mp4",
-        thumbnail: "img/portadadía.png",
+        thumbnail: "img/portadadia.png",
         duration: "01:30"
     },
 
@@ -29,7 +29,7 @@ const videosData = [
         dateLabel: "ayer",
         category: "ayer",
         videoSrc: "img/27n.mp4",
-        thumbnail: "img/portadaNOCHE.png",
+        thumbnail: "img/portadanoche.png",
         duration: "01:30"
     },
     {
@@ -39,7 +39,7 @@ const videosData = [
         dateLabel: "ayer",
         category: "ayer",
         videoSrc: "img/27dia.mp4",
-        thumbnail: "img/portadadía.png",
+        thumbnail: "img/portadadia.png",
         duration: "01:30"
     },
     {
@@ -49,7 +49,7 @@ const videosData = [
         dateLabel: "Hace 2 días",
         category: "semana",
         videoSrc: "img/26n.mp4",
-        thumbnail: "img/portadaNOCHE.png",
+        thumbnail: "img/portadanoche.png",
         duration: "01:30"
     },
 
